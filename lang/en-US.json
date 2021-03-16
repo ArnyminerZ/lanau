@@ -1,0 +1,46 @@
+{
+  "title": "La NAU - Sala de Bloc",
+
+  "nav-home": "Home",
+  "nav-logout": "Logout",
+  "nav-language": "Language",
+
+  "footer": "Made with &#128155; by <a href=\"https://arnyminerz.com\">Arnau Mora</a>",
+
+  "title-welcome": "Welcome to La NAU!",
+  "title-welcome-login": "Already a member? Log in!",
+  "title-welcome-register": "Want to be a member? Sign up!",
+
+  "register-email": "Email",
+  "register-username": "Username",
+  "register-password": "Password",
+  "register-password-confirm": "Confirm Password",
+  "register-name": "Name",
+  "register-surname": "Surname",
+  "register-action": "Register",
+  "register-complete": "Registrations are now complete",
+
+  "login-username": "Username",
+  "login-password": "Password",
+  "login-action": "Login",
+
+  "link-reservation": "Reservation",
+  "reservation-title": "Reserve",
+  "reservation-date": "Date",
+  "reservation-time": "Time",
+  "reservation-duration": "Duration",
+  "reservation-people": "Add People",
+  "reservation-add": "Add",
+  "reservation-reserve": "Confirm",
+  "reservation-close": "Cancel",
+  "reservation-info": "By clicking \"Confirm\" you certify that:",
+  "reservation-info-1": "You have the specified people's permission to use their name in this form.",
+  "reservation-info-2": "You are informed about the latest safety rules in the gym, and that you and anyone that visits it with you follow them appropriately.",
+  "reservation-info-3": "You have revised the information above and it's accurate.",
+  "reservation-error-self": "Can't delete yourself",
+  "reservation-content-title": "Reservation ",
+  "reservation-content-made-by": "Made by ",
+  "reservation-content-guests": "Guests:",
+  "reservation-content-start": "Start:",
+  "reservation-content-end": "End:"
+}

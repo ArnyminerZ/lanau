@@ -1,0 +1,17 @@
+#main-container {
+    margin-bottom: 10vh;
+}
+
+#carousel .carousel-inner .carousel-item {
+    height: 45vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#panels div {
+    margin-top: 1vh;
+}
+
+#final-row {
+    margin-top: 1vh;
+}

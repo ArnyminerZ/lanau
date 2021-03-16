@@ -4,3 +4,6 @@
 
 # PHP Composer
 vendor
+
+# Secret files
+secrets.php
