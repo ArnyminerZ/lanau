@@ -57,21 +57,26 @@ if (isset($_GET["logout"])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {
         if ($currentUser) {
-            $date = test_input($_POST["date"]);
-            $duration = test_input($_POST["duration"]);
-            $people = test_input($_POST["people"]);
+            $action = test_input($_POST["action"]);
+            if ($action == "RESERVE") {
+                $date = test_input($_POST["date"]);
+                $duration = test_input($_POST["duration"]);
+                $people = test_input($_POST["people"]);
 
-            $people_list = explode(',', $people);
+                $people_list = explode(',', $people);
 
-            $reservation = new ParseObject($PARSE_RESERVATIONS_CLASS);
-            $reservation->set("user", $currentUser);
-            $reservation->setArray("others", $people_list);
-            $reservation->set("duration", intval($duration));
-            $reservation->set("when", new DateTime($date));
-            $reservation->save();
+                $reservation = new ParseObject($PARSE_RESERVATIONS_CLASS);
+                $reservation->set("user", $currentUser);
+                $reservation->setArray("others", $people_list);
+                $reservation->set("duration", intval($duration));
+                $reservation->set("when", new DateTime($date));
+                $reservation->save();
 
-            echo "{\"result\":\"ok\"}";
-            die(200);
+                echo "{\"result\":\"ok\"}";
+                die(200);
+            } else if ($action == "CANCEL") {
+
+            }
         } else {
             $username = test_input($_POST["username"]);
             $password = test_input($_POST["password"]);
