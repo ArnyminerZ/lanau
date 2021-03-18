@@ -1,4 +1,4 @@
-let reservationModal, reservationViewModal;
+let reservationModal, reservationViewModal, reservationCancelModal;
 
 $(() => {
     const reserveDateField = $('#reserveDate')
@@ -8,6 +8,7 @@ $(() => {
         backdrop: 'static'
     });
     reservationViewModal = new bootstrap.Modal(document.getElementById('reservationModal'), {});
+    reservationCancelModal = new bootstrap.Modal(document.getElementById('reservationCancelModal'), {});
 
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
