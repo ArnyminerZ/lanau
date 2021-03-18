@@ -10,6 +10,15 @@ const updateDeletables = () => {
         }
 }
 
+const timeConvert = (n) => {
+    const num = n / 60;
+    const hours = (num / 60);
+    const rhours = Math.floor(hours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
+    return {hours: rhours, minutes: rminutes};
+}
+
 $(() => {
     const template =
         `<li class="list-group-item d-flex justify-content-between align-items-center" data-name="{name}">
