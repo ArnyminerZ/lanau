@@ -28,8 +28,10 @@ $(() => {
         const id = event.id,
             start = event.start,
             end = event.end;
-        const madeBy = EVENT_USER_NAMES[id];
-        const guests = EVENT_GUESTS[id];
+        const props = event.extendedProps;
+        const user = props.user;
+        const madeBy = user.fullName;
+        const guests = props.guests;
 
         const reservationModalLabel = $('#reservationModalLabel');
         const madeByLabel = $('#reservationModalMadeBy');
