@@ -372,6 +372,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 $email = $user->get('email');
                 $formatted_others = join(",", $others);
                 $formatted_others = str_replace(",", "\"],[\"", $formatted_others);
+                if (count($others) > 0)
+                    $formatted_others = "\"$formatted_others\"";
 
                 $formatted_when = $when->format("Y-m-d H:i:s");
                 $end = $when->modify("+$duration second");
@@ -384,9 +386,9 @@ start:\"$formatted_when\",
 end:\"$formatted_end\",
 extendedProps: {
   user: {
-    username: $username,
-    fullName: $fullName,
-    email: $fullName
+    username: \"$username\",
+    fullName: \"$fullName\",
+    email: \"$fullName\"
   },
   guests: [$formatted_others]
 }
