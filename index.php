@@ -218,6 +218,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" id="cancelReservationButton"
+                            data-translate="reservation-cancel"></button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             data-translate="reservation-close"></button>
                 </div>
