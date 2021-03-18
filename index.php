@@ -390,7 +390,8 @@ extendedProps: {
     fullName: \"$fullName\",
     email: \"$fullName\"
   },
-  guests: [$formatted_others]
+  guests: [$formatted_others],
+  duration: $duration
 }
 },";
             }
