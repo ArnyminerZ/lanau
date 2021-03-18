@@ -75,7 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 echo "{\"result\":\"ok\"}";
                 die(200);
             } else if ($action == "CANCEL") {
+                $id = test_input($_POST["id"]);
 
+                $query = new ParseQuery($PARSE_RESERVATIONS_CLASS);
+                $reservation = $query->get($id);
+                $reservation->destroy();
+
+                echo "{\"result\":\"ok\"}";
+                die(200);
             }
         } else {
             $username = test_input($_POST["username"]);
