@@ -33,7 +33,7 @@
   "reservation-add": "Add",
   "reservation-reserve": "Confirm",
   "reservation-close": "Close",
-  "reservation-cancel": "Cancel",
+  "reservation-cancel": "Cancel Reservation",
   "reservation-info": "By clicking \"Confirm\" you certify that:",
   "reservation-info-1": "You have the specified people's permission to use their name in this form.",
   "reservation-info-2": "You are informed about the latest safety rules in the gym, and that you and anyone that visits it with you follow them appropriately.",
@@ -43,5 +43,6 @@
   "reservation-content-made-by": "Made by ",
   "reservation-content-guests": "Guests:",
   "reservation-content-start": "Start:",
-  "reservation-content-end": "End:"
+  "reservation-content-end": "End:",
+  "reservation-cancel-confirm": "Are you sure that you want to delete your reservation scheduled at {time} of {date} for {duration-hours} hours and {duration-minutes} minutes?"
 }
