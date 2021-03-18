@@ -105,8 +105,8 @@ $(() => {
         if (currentEvent == null) return;
 
         $.post('/', {
-            action: "RESERVE",
-            id: currentEvent.extendedProps.id
+            action: "CANCEL",
+            id: currentEvent.id
         }).done(function () {
             window.location.reload()
         }).fail(function (error) {

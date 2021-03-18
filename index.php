@@ -78,11 +78,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 $id = test_input($_POST["id"]);
 
                 $query = new ParseQuery($PARSE_RESERVATIONS_CLASS);
-                $reservation = $query->get($id);
-                $reservation->destroy();
+                $reservation = $query->get($id)->fetch();
+                $user = $reservation->get("user")->fetch();
+                $userId = $user->getObjectId();
+                $currentUserId = $currentUser->getObjectId();
+                if ($userId == $currentUserId) {
+                    $reservation->destroy();
 
-                echo "{\"result\":\"ok\"}";
-                die(200);
+                    echo "{\"result\":\"ok\"}";
+                    die(200);
+                } else {
+                    echo "{\"result\":\"error\",\"message\":\"Current user did not create the event\"}";
+                    die(500);
+                }
             }
         } else {
             $username = test_input($_POST["username"]);
