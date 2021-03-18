@@ -42,7 +42,7 @@ $(() => {
 
         const date = reserveDateField.val()
         const time = reserveTimeField.val()
-        const duration = reserveDurationField.val()
+        const duration = new Date(reserveDurationField.val())
         const guestUsersRaw = guestUsersList.children()
         const guestUsersArray = []
 
