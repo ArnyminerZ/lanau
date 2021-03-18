@@ -1,4 +1,5 @@
 let reservationModal, reservationViewModal, reservationCancelModal;
+let currentEvent;
 
 $(() => {
     const reserveDateField = $('#reserveDate')
@@ -9,6 +10,10 @@ $(() => {
     });
     reservationViewModal = new bootstrap.Modal(document.getElementById('reservationModal'), {});
     reservationCancelModal = new bootstrap.Modal(document.getElementById('reservationCancelModal'), {});
+
+    reservationCancelModal.addEventListener('hidden.bs.modal', function () {
+        currentEvent = null;
+    })
 
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -33,6 +38,8 @@ $(() => {
         const user = props.user;
         const madeBy = user.fullName;
         const guests = props.guests;
+
+        currentEvent = event;
 
         const reservationModalLabel = $('#reservationModalLabel');
         const madeByLabel = $('#reservationModalMadeBy');
