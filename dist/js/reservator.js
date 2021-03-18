@@ -29,23 +29,26 @@ $(() => {
     const exampleEl = document.getElementById('user-delete');
     new bootstrap.Tooltip(exampleEl, {});
 
-    const reserveForm = $("#reserveForm")
-    const personNameField = $("#reservePeopleEnter")
-    const guestUsersList = $("#guestUsersList")
-    const guestUsersAdd = $("#reservePeopleAdd")
-    const reserveDateField = $("#reserveDate")
-    const reserveTimeField = $("#reserveTime")
-    const reserveDurationField = $("#reserveDuration")
+    const reserveForm = $("#reserveForm");
+    const personNameField = $("#reservePeopleEnter");
+    const guestUsersList = $("#guestUsersList");
+    const guestUsersAdd = $("#reservePeopleAdd");
+    const reserveDateField = $("#reserveDate");
+    const reserveTimeField = $("#reserveTime");
+    const reserveDurationField = $("#reserveDuration");
+    const cancelReservationButton = $("#cancelReservationButton");
+    const reservationCancelModalText = $("#reservationCancelModalText");
+
     guestUsersAdd.on('click', function () {
-        const name = personNameField.val()
+        const name = personNameField.val();
         if (name.length > GUEST_NAME_MIN_LENGTH) {
             guestUsersList.append(
                 template.replace(/{name}/g, name)
-            )
-            personNameField.val(null)
-            updateDeletables()
+            );
+            personNameField.val(null);
+            updateDeletables();
         }
-    })
+    });
     reserveForm.on('submit', function (event) {
         event.preventDefault()
 
@@ -78,5 +81,22 @@ $(() => {
             alert("Could not reserve")
             console.error(error)
         })
+    });
+    cancelReservationButton.on('click', function () {
+        if (!currentEvent) return;
+
+        const start = currentEvent.start;
+        const props = currentEvent.extendedProps;
+        const duration = props.duration;
+        const convertedDuration = timeConvert(duration);
+
+        reservationCancelModalText.text(
+            getTranslation('reservation-cancel-confirm')
+                .replace(/{date}/g, start.toLocaleDateString())
+                .replace(/{time}/g, start.toLocaleTimeString())
+                .replace(/{duration-hours}/g, convertedDuration.hours)
+                .replace(/{duration-minutes}/g, convertedDuration.minutes)
+        )
+        reservationCancelModal.show();
     })
 })
