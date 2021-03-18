@@ -201,7 +201,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 </div>
                 <div class="modal-body">
                     <h5>
-                        <span data-translate="reservation-content-made-by"></span><span id="reservationModalMadeBy"></span>
+                        <span data-translate="reservation-content-made-by"></span><span
+                                id="reservationModalMadeBy"></span>
                     </h5>
                     <h5 data-translate="reservation-content-guests"></h5>
                     <ul id="reservationModalGuests"></ul>
@@ -350,39 +351,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <script>
     const GUEST_NAME_MIN_LENGTH = <?php echo $GUEST_NAME_MIN_LENGTH; ?>;
 
-    <?php
-    if ($currentUser) {
-        $query = new ParseQuery($PARSE_RESERVATIONS_CLASS);
-        // Get only non-passed events
-        $query->greaterThanOrEqualToRelativeTime('when', 'now');
-        $results = $query->find();
-        $sourcesGenerator = $users = $guests = "";
-        for ($i = 0; $i < count($results); $i++) {
-            $object = $results[$i];
-            $objectId = $object->getObjectId();
-            $when = $object->get('when');
-            $duration = $object->get('duration');
-            $others = $object->get('others');
-            $user = $object->get('user');
-            $user->fetch();
+    const EVENT_SOURCES = [
+        <?php
+        if ($currentUser) {
+            $query = new ParseQuery($PARSE_RESERVATIONS_CLASS);
+            // Get only non-passed events
+            $query->greaterThanOrEqualToRelativeTime('when', 'now');
+            $results = $query->find();
+            for ($i = 0; $i < count($results); $i++) {
+                $object = $results[$i];
+                $objectId = $object->getObjectId();
+                $when = $object->get('when');
+                $duration = $object->get('duration');
+                $others = $object->get('others');
+                $user = $object->get('user');
+                $user->fetch();
 
-            $user_name = $user->get('fullName');
-            $formatted_others = join(",", $others);
-            $formatted_others = str_replace(",","\"],[\"", $formatted_others);
+                $fullName = $user->get('fullName');
+                $username = $user->get('username');
+                $email = $user->get('email');
+                $formatted_others = join(",", $others);
+                $formatted_others = str_replace(",", "\"],[\"", $formatted_others);
 
-            $formatted_when = $when->format("Y-m-d H:i:s");
-            $end = $when->modify("+$duration second");
-            $formatted_end = $end->format("Y-m-d H:i:s");
+                $formatted_when = $when->format("Y-m-d H:i:s");
+                $end = $when->modify("+$duration second");
+                $formatted_end = $end->format("Y-m-d H:i:s");
 
-            $sourcesGenerator .= "{id:\"$objectId\",title:\"Reservation <code>$objectId</code>\",start:\"$formatted_when\",end:\"$formatted_end\"},";
-            $users .= "\"$objectId\":\"$user_name\",";
-            $guests .= "\"$objectId\":[\"$formatted_others\"],";
+                echo "{
+id:\"$objectId\",
+title:\"Reservation <code>$objectId</code>\",
+start:\"$formatted_when\",
+end:\"$formatted_end\",
+extendedProps: {
+  user: {
+    username: $username,
+    fullName: $fullName,
+    email: $fullName
+  },
+  guests: [$formatted_others]
+}
+},";
+            }
         }
-        echo "const EVENT_SOURCES=[$sourcesGenerator];";
-        echo "const EVENT_USER_NAMES={{$users}};";
-        echo "const EVENT_GUESTS={{$guests}};";
-    }
-    ?>
+        ?>
+    ];
 </script>
 
 <!-- Scripts -->
