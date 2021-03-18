@@ -8,12 +8,20 @@ $(() => {
         keyboard: false,
         backdrop: 'static'
     });
-    reservationViewModal = new bootstrap.Modal(document.getElementById('reservationModal'), {});
-    reservationCancelModal = new bootstrap.Modal(document.getElementById('reservationCancelModal'), {});
+    const reservationViewModalDOM = document.getElementById('reservationModal');
+    reservationViewModal = new bootstrap.Modal(reservationViewModalDOM, {});
+    const reservationCancelModalDOM = document.getElementById('reservationCancelModal')
+    reservationCancelModal = new bootstrap.Modal(reservationCancelModalDOM, {});
 
-    reservationCancelModal.addEventListener('hidden.bs.modal', function () {
+    reservationCancelModalDOM.addEventListener('show.bs.modal', function () {
+        reservationViewModal.hide();
+    });
+    reservationCancelModalDOM.addEventListener('hidden.bs.modal', function () {
+        reservationViewModal.show();
+    });
+    reservationViewModalDOM.addEventListener('hidden.bs.modal', function () {
         currentEvent = null;
-    })
+    });
 
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
