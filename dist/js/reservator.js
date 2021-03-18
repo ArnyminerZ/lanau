@@ -72,6 +72,7 @@ $(() => {
         const dateTime = new Date(`${date} ${time}`)
 
         $.post('/', {
+            action: "RESERVE",
             duration: duration.getHours() * 3600 + duration.getMinutes() * 60,
             date: dateTime.toISOString(),
             people: guestUsers
