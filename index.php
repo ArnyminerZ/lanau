@@ -218,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" id="cancelReservationButton"
+                    <button type="button" class="btn btn-outline-danger" id="cancelReservationButton"
                             data-translate="reservation-cancel"></button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             data-translate="reservation-close"></button>
@@ -240,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
                             data-translate="reservation-close"></button>
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-outline-danger"
                             data-translate="reservation-cancel"></button>
                 </div>
             </div>
