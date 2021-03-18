@@ -38,6 +38,7 @@ $(() => {
     const reserveDurationField = $("#reserveDuration");
     const cancelReservationButton = $("#cancelReservationButton");
     const reservationCancelModalText = $("#reservationCancelModalText");
+    const reservationCancelConfirmButton = $("#reservationCancelConfirmButton");
 
     guestUsersAdd.on('click', function () {
         const name = personNameField.val();
@@ -99,5 +100,18 @@ $(() => {
                 .replace(/{duration-minutes}/g, convertedDuration.minutes)
         )
         reservationCancelModal.show();
+    })
+    reservationCancelConfirmButton.on('click', function () {
+        if (currentEvent == null) return;
+
+        $.post('/', {
+            action: "RESERVE",
+            id: currentEvent.extendedProps.id
+        }).done(function () {
+            window.location.reload()
+        }).fail(function (error) {
+            alert("Could not reserve")
+            console.error(error)
+        })
     })
 })
