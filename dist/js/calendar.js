@@ -16,11 +16,8 @@ $(() => {
     reservationCancelModalDOM.addEventListener('show.bs.modal', function () {
         reservationViewModal.hide();
     });
-    reservationCancelModalDOM.addEventListener('hidden.bs.modal', function () {
+    reservationCancelModalDOM.addEventListener('hide.bs.modal', function () {
         reservationViewModal.show();
-    });
-    reservationViewModalDOM.addEventListener('hidden.bs.modal', function () {
-        currentEvent = null;
     });
 
     const calendarEl = document.getElementById('calendar');
