@@ -63,17 +63,8 @@ $(() => {
             duration: duration.getHours() * 3600 + duration.getMinutes() * 60,
             date: dateTime.toISOString(),
             people: guestUsers
-        }).done(function (data) {
-            console.log(data);
-
-            reservationModal.hide();
-
-            reserveTimeField.prop('disabled', false);
-            reserveDurationField.prop('disabled', false);
-            personNameField.prop('disabled', false);
-
-            reserveForm.reset();
-            guestUsersList.empty();
+        }).done(function () {
+            window.location.reload()
         }).fail(function (error) {
             alert("Could not reserve")
             console.error(error)
